@@ -15,3 +15,19 @@ As a user, I want to opt into and out of notifications to use the app
 
 As a user, I want to be able to donate to the developers, 
     so I can reward them for creating a helpful application.
+
+
+As a user, I want to choose different Pomodoro intervals
+	so I can manage my time how I want.
+
+As a user, I want to be able to schedule my day,
+	so I spend my time wisely
+
+As a user, I want to choose different alarms/ringtones
+	so I can personilize it for me
+
+As a user, I want different color themes
+	so I can make it more appealing
+
+As a user, I want some motivational quotes/media
+	so I can motivate myself
