@@ -1,33 +1,33 @@
 As a <type of user>, I want <some goal> so that <some reason>.
 15 - 20 User Stories
 
-As a user, I want to save my progress if I leave the app,
+1. As a user, I want to save my progress if I leave the app,
     so I can multitask while using the application
 
-As a user, I want the alarm to vibrate/make a noise,   
+2. As a user, I want the alarm to vibrate/make a noise,   
     so I know when to switch activities
 
-As a developer, I want to receive reports/bugs from users,
+3. As a developer, I want to receive reports/bugs from users,
     so I can fix them quickly and efficently.
 
-As a user, I want to opt into and out of notifications to use the app
+4. As a user, I want to opt into and out of notifications to use the app
     so I can be reminded to use the application.
 
-As a user, I want to be able to donate to the developers, 
+5. As a user, I want to be able to donate to the developers, 
     so I can reward them for creating a helpful application.
 
 
-As a user, I want to choose different Pomodoro intervals
+6. As a user, I want to choose different Pomodoro intervals
 	so I can manage my time how I want.
 
-As a user, I want to be able to schedule my day,
+7. As a user, I want to be able to schedule my day,
 	so I spend my time wisely
 
-As a user, I want to choose different alarms/ringtones
+8. As a user, I want to choose different alarms/ringtones
 	so I can personilize it for me
 
-As a user, I want different color themes
+9. As a user, I want different color themes
 	so I can make it more appealing
 
-As a user, I want some motivational quotes/media
+10. As a user, I want some motivational quotes/media
 	so I can motivate myself
