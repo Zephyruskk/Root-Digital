@@ -31,3 +31,21 @@ As a <type of user>, I want <some goal> so that <some reason>.
 
 10. As a user, I want some motivational quotes/media
 	so I can motivate myself
+
+
+11. As a fitness coach, I want to share custom workouts,
+	so that I can have my trainee follow it when I'm not there.
+
+12. As a trainee, I want to see my profile's statistics,
+	so that I can see and share how much I have improved over time.
+
+13. As a user, I want to have a visible streak on my profile,
+	so that I will be encouraged to not miss a day.
+
+14. As a user, I want to favorite my preferred exercises on my profile,
+	so that I can more easily find them later on.
+
+15. As a workout buddy, I want to have the option to share on my profile when I've completed my scheduled workout,
+	so that me and my partner can go through this experience together, motivating each other to keep going by knowing that neither of us have missed a day.
+
+
