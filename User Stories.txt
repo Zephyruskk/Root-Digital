@@ -10,27 +10,27 @@ As a <type of user>, I want <some goal> so that <some reason>.
 3. As a developer, I want to receive reports/bugs from users,
     so I can fix them quickly and efficently.
 
-4. As a user, I want to opt into and out of notifications to use the app
+4. As a user, I want to opt into and out of notifications to use the app,
     so I can be reminded to use the application.
 
 5. As a user, I want to be able to donate to the developers, 
     so I can reward them for creating a helpful application.
 
 
-6. As a user, I want to choose different Pomodoro intervals
+6. As a user, I want to choose different Pomodoro intervals,
 	so I can manage my time how I want.
 
 7. As a user, I want to be able to schedule my day,
-	so I spend my time wisely
+	so I spend my time wisely.
 
-8. As a user, I want to choose different alarms/ringtones
-	so I can personilize it for me
+8. As a user, I want to choose different alarms/ringtones,
+	so I can personilize it for me.
 
-9. As a user, I want different color themes
-	so I can make it more appealing
+9. As a user, I want different color themes,
+	so I can make it more appealing.
 
-10. As a user, I want some motivational quotes/media
-	so I can motivate myself
+10. As a user, I want some motivational quotes/media,
+	so I can motivate myself.
 
 
 11. As a fitness coach, I want to share custom workouts,
@@ -46,6 +46,6 @@ As a <type of user>, I want <some goal> so that <some reason>.
 	so that I can more easily find them later on.
 
 15. As a workout buddy, I want to have the option to share on my profile when I've completed my scheduled workout,
-	so that me and my partner can go through this experience together, motivating each other to keep going by knowing that neither of us have missed a day.
+	so that me and my partner can go through this experience together.
 
 
