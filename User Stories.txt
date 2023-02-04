@@ -2,10 +2,10 @@ As a <type of user>, I want <some goal> so that <some reason>.
 15 - 20 User Stories
 
 1. As a user, I want to save my progress if I leave the app,
-    so I can multitask while using the application
+    so I can multitask while using the application.
 
 2. As a user, I want the alarm to vibrate/make a noise,   
-    so I know when to switch activities
+    so I know when to switch activities.
 
 3. As a developer, I want to receive reports/bugs from users,
     so I can fix them quickly and efficently.
