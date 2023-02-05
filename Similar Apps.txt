@@ -2,3 +2,12 @@
 
 
 Pomodoro Timer is an app that surrounds the concept of the Pomodoro method of productivity. Its utility comes in its ability to be personalized by the user. Letting them set goals, schedules, and even visual changes in themes. Our app is set to be very similar in these regards, as both use the Pomodoro method of studying as the baseline concept. Where our apps differ is how we use this concept. Where Pomodoro Timer is used as a way to increase the user's productivity when it comes to studying, our app will be centered around intermittent exercise, however, using the same philosophy as the Pomodoro method. Much of the Pomodoro Timer app's features will have similar applications in our own project. Providing the user with an easy-to-grasp experience that can be tailored to their needs is in the mission statement of both of the apps. Being an exercise app that focuses on the Pomodoro strategy, many features will be encouraged to not only help the user stay on task during their exercise, but to maintain a healthy schedule of using the app. Our app will include daily streaks, weekly goals, activity tracking, and the ability to share these statistics to social media. 
+
+
+2) Ertigo: https://apps.apple.com/us/app/ergonomic-pomodoro-timer/id1550788893?platform=iphone
+
+
+Ertigo uses the Pomodoro timing technique in combination with stretching to boost productivity and help your posture.
+While both Ertigo and our app will use Pomodoro, our app with be more focused on daily activity and encourgement. Our
+app will offer a wider range of techniques rather than just streches. Things like free-weight exercises and meditation will be included,
+along with the abilty to make your own personilized groupings of exercises and techniques. 
