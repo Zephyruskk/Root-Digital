@@ -2,10 +2,10 @@ As a <type of user>, I want <some goal> so that <some reason>.
 15 - 20 User Stories
 
 1. As a user, I want to save my progress if I leave the app,
-    so I can multitask while using the application
+    so I can multitask while using the application.
 
 2. As a user, I want the alarm to vibrate/make a noise,   
-    so I know when to switch activities
+    so I know when to switch activities.
 
 3. As a developer, I want to receive reports/bugs from users,
     so I can fix them quickly and efficently.
@@ -49,3 +49,17 @@ As a <type of user>, I want <some goal> so that <some reason>.
 	so that me and my partner can go through this experience together.
 
 
+16. As a college student, I want to have access to exercises I can do in my chair,
+	so that I can I can use this app in the library. 
+
+17. As a desk-job-worker, I want stretches to be included as available exercises,
+	so that I can keep my back, neck, and shoulders healthy during long days. 
+
+18. As a student, I want meditative exercises to be included in the app,
+	so that I can manage my stress while remaining productive. 
+
+19. As a novice to fitness, I want visuals to help guide me during exercises,
+	so that I can use the app without having to stop to research forms. 
+
+20. As a novice to fitness, I want allow the app to randomly select exercises for me,
+	so that I can see which ones work best for me. 
