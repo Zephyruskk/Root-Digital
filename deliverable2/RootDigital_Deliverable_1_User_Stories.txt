@@ -1,0 +1,71 @@
+As a <type of user>, I want <some goal> so that <some reason>.
+15 - 20 User Stories
+
+1. As a user, I want to save my progress if I leave the app,
+    so I can multitask while using the application.
+
+2. As a user, I want the alarm to vibrate,   
+    so I know when to switch activities.
+
+3. As a user, I want the alarm to make a noise,
+	So I know when to switch activities.  
+
+4. As a user, I want to send feedback to the developers,
+    so they know how I feel about their app.
+
+5. As a user, I want to report bugs I find, 
+	so they can be fixed quickly and efficiently. 
+
+6. As a user, I want to opt into and out of notifications to use the app,
+    so I can be reminded to use the application.
+
+7. As a user, I want to be able to donate to the developers, 
+    so I can reward them for creating a helpful application.
+
+8. As a user, I want to choose different Pomodoro intervals,
+	so I can manage my time how I want.
+
+9. As a user, I want to be able to schedule my day,
+	so I spend my time wisely.
+
+10. As a user, I want to choose different alarms,
+	so I can personilize it for me.
+
+11. As a user, I want different color themes,
+	so I can make it more appealing.
+
+12. As a user, I want some motivational quotes,
+	so I can motivate myself.
+
+13. As a user, I want some motivational media, 
+	so I can motivate myself.
+
+14. As a fitness coach, I want to share custom workouts,
+	so that I can have my trainee follow it when I'm not there.
+
+15. As a trainee, I want to see my profile's statistics,
+	so that I can see and share how much I have improved over time.
+
+16. As a user, I want to have a visible streak on my profile,
+	so that I will be encouraged to not miss a day.
+
+17. As a user, I want to favorite my preferred exercises on my profile,
+	so that I can more easily find them later on.
+
+18. As a workout buddy, I want to have the option to share on my profile when I've completed my scheduled workout,
+	so that me and my partner can go through this experience together.
+
+19. As a college student, I want to have access to exercises I can do in my chair,
+	so that I can I can use this app in the library. 
+
+20. As a desk-job-worker, I want stretches to be included as available exercises,
+	so that I can keep my back, neck, and shoulders healthy during long days. 
+
+21. As a student, I want meditative exercises to be included in the app,
+	so that I can manage my stress while remaining productive. 
+
+22. As a novice to fitness, I want visuals to help guide me during exercises,
+	so that I can use the app without having to stop to research forms. 
+
+23. As a novice to fitness, I want allow the app to randomly select exercises for me,
+	so that I can see which ones work best for me. 
