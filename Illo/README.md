@@ -6,3 +6,5 @@ In this repository, you will find biweekly updates -- "deliverables" -- to proje
 Illo is developed with Java via the Android API version 29 for Android version 10.0.0 (Q) and above. 
   
 Root-Digital is a company by Cole Adams, Evan Mutchler, Johnny Sylvain, Riley Mills, and Zachary Scott.
+
+The app currently has 3 openable windows that have a basic mockup of the ui.
