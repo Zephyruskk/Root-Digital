@@ -49,31 +49,34 @@ public class MainActivity extends AppCompatActivity {
 
 
         // COUNTDOWN TIMER CODE BEGINS HERE;
-        // TO-DO: Debug Timer. I believe this code just needs to be rearranged in a way that the timer loads first
-        // because right now it breaks the code with a 'null object reference' error
-        countdownText = findViewById(R.id.countdown_text);
-        startPauseButton = findViewById(R.id.start_pause_button);
-        resetButton = findViewById(R.id.reset_button);
+        // Need-To: Debug Timer; Currently throws 'null object reference' error without try-catch in place
+        try {
+            countdownText = findViewById(R.id.countdown_text);
+            startPauseButton = findViewById(R.id.start_pause_button);
+            resetButton = findViewById(R.id.reset_button);
 
-        startPauseButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if(isTimerRunning){
-                    pauseTimer();
-                } else {
-                    startTimer();
+            startPauseButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if (isTimerRunning) {
+                        pauseTimer();
+                    } else {
+                        startTimer();
+                    }
                 }
-            }
-        });
+            });
+            resetButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    resetTimer();
+                }
+            });
+            updateCountdownText();
 
-        resetButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                resetTimer();
-            }
-        });
+        } catch (Exception e){
+            System.out.println("DEBUGGING MainActivity -- Timer Exception Error");
+        }
 
-        updateCountdownText();
     }
 
     private void startTimer(){
