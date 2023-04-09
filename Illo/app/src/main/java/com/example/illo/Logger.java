@@ -12,4 +12,8 @@ public class Logger {
         }
         return instance;
     }
+
+    public void writeLog(){
+
+    }
 }
