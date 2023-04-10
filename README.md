@@ -7,4 +7,11 @@ Illo is developed with Java via the Android API version 29 for Android version 1
   
 Root-Digital is a company by Cole Adams, Evan Mutchler, Johnny Sylvain, Riley Mills, and Zachary Scott.
 
-The app currently has 3 windows that have a basic mockup of the ui. The implementation of a timer feature has begun and is currently in the early stages of development.
+The app currently has 3 windows that have a basic mockup of the ui.
+
+FEATURES IN DEVELOPMENT:
+++ TIMER 
+++ USER INPUT NAME
+++ UI COLOR SELECTION
+
+The implementation of these features are currently in the early stages of development.
