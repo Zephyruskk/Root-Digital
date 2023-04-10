@@ -1,14 +1,14 @@
 package com.example.illo;
 
-public abstract class ActivitySource<Exercise> {
+public abstract class ActivitySource {
 
-    private Exercise[] exerciseBank;
-    public static String name = null;
+    protected Exercise[] exerciseBank;
+    public String name = null;
 
     public abstract Exercise nextExercise();
 
-    protected ActivitySource() {
-
+    protected ActivitySource(String name) {
+        this.name = name;
     }
 
     public void addExercise(){
@@ -29,11 +29,11 @@ public abstract class ActivitySource<Exercise> {
     }
 
     // Creates new activity source if name is valid; else throws exception
-    public static ActivitySource makeActivitySource(){
+    public static ActivitySource makeActivitySource(String name){
         if (name.equalsIgnoreCase("Workout")) {
-            return new Workout(name, exercises);
+            return new Workout(name);
         } else if (name.equalsIgnoreCase("ExerciseSet")) {
-            return new ExerciseSet(name, exercises);
+            return new ExerciseSet(name);
         } else {
             throw new IllegalArgumentException("Invalid activity source name");
         }
