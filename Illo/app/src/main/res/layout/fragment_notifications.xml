@@ -21,13 +21,42 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/button2"
-        android:layout_width="75dp"
-        android:layout_height="65dp"
-        android:text="Button"
+        android:id="@+id/ThemeBlue"
+        android:layout_width="141dp"
+        android:layout_height="55dp"
+        android:text="Blue"
+        android:backgroundTint="@android:color/holo_blue_dark"
+        android:textColor="@android:color/black"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.087"
+        app:layout_constraintHorizontal_bias="0.155"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.254" />
+
+    <Button
+        android:id="@+id/ThemeGreen"
+        android:layout_width="141dp"
+        android:layout_height="55dp"
+        android:backgroundTint="@android:color/holo_green_light"
+        android:text="Green"
+        android:textColor="@android:color/black"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.374" />
+
+    <Button
+        android:id="@+id/ThemeRed"
+        android:layout_width="141dp"
+        android:layout_height="55dp"
+        android:text="Red"
+        android:backgroundTint="@android:color/holo_red_dark"
+        android:textColor="@android:color/holo_orange_light"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.822"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.254" />
