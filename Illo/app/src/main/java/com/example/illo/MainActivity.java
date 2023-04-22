@@ -1,131 +1,140 @@
 package com.example.illo;
 
-
-import com.google.android.material.bottomnavigation.BottomNavigationView;
+import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.navigation.NavController;
-import androidx.navigation.Navigation;
-import androidx.navigation.ui.AppBarConfiguration;
-import androidx.navigation.ui.NavigationUI;
-
-import com.example.illo.databinding.ActivityMainBinding;
-
 import java.util.Locale;
+import java.util.Random;
 
 public class MainActivity extends AppCompatActivity {
 
-    private static final long START_TIME_IN_MILLISECONDS = 600000;
     private TextView countdownText;
-    private Button startPauseButton;
-    private Button resetButton;
-    private CountDownTimer countdownTimer;
-    private boolean isTimerRunning;
-    private long millisecondsLeftOnTimer = START_TIME_IN_MILLISECONDS;
+    private Button countdownButton;
+    private ImageView exerciseView;
+    private ImageButton nextExerciseButton;
 
-    private ActivityMainBinding binding;
+    private CountDownTimer countDownTimer;
+    private long timeLeftMS = 300000; // 15 min
+    private boolean timerRunning;
+
+    private String[][] exerciseBank;
+    private String packageName;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
 
-        binding = ActivityMainBinding.inflate(getLayoutInflater());
-        setContentView(binding.getRoot());
+        packageName = getPackageName();
 
-        BottomNavigationView navView = findViewById(R.id.nav_view);
-        // Passing each menu ID as a set of Ids because each
-        // menu should be considered as top level destinations.
-        AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.navigation_home, R.id.navigation_dashboard, R.id.navigation_notifications)
-                .build();
-        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_activity_main);
-        NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
-        NavigationUI.setupWithNavController(binding.navView, navController);
-
-
-        // COUNTDOWN TIMER CODE BEGINS HERE;
-        // Need-To: Debug Timer; Currently throws 'null object reference' error without try-catch in place
-        try {
-            countdownText = findViewById(R.id.countdown_text);
-            startPauseButton = findViewById(R.id.start_pause_button);
-            resetButton = findViewById(R.id.reset_button);
-
-            startPauseButton.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    if (isTimerRunning) {
-                        pauseTimer();
-                    } else {
-                        startTimer();
-                    }
+        exerciseBank = new String[][]{
+                new String[]{"exercise_ballsqueezehandstretch"},
+                new String[]{"exercise_bodycrunches_blueshirtman"},
+                new String[]{
+                        "exercise_breakdancer_blueshirtwoman",
+                        "exercise_breakdancer_whiteshirtwoman"
+                },
+                new String[]{
+                        "exercise_pushups_blueshirtman",
+                        "exercise_pushups_blueshirtwoman"
                 }
-            });
-            resetButton.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    resetTimer();
-                }
-            });
-            updateCountdownText();
-
-        } catch (Exception e){
-            System.out.println("DEBUGGING MainActivity -- Timer Exception Error");
-        }
-
-    }
-
-    private void startTimer(){
-        // When called a new countdown timer is created & begins ticking down
-        countdownTimer = new CountDownTimer(millisecondsLeftOnTimer, 1000) {
-            // Creates a new timer that ticks down every 1000 milliseconds (1 second)
-            @Override
-            public void onTick(long millisecondsUntilFinished) {
-                millisecondsLeftOnTimer = millisecondsUntilFinished;
-                updateCountdownText();
-            }
-            @Override
-            public void onFinish() {
-                isTimerRunning = false;
-                startPauseButton.setText("Start");
-                startPauseButton.setVisibility(View.INVISIBLE);
-                resetButton.setVisibility(View.VISIBLE);
-
-            }
         };
 
-        countdownTimer.start();
-        isTimerRunning = true;
-        startPauseButton.setText("Pause");
-        resetButton.setVisibility(View.INVISIBLE);
+        // gives references to objects in the view
+        countdownText = findViewById(R.id.countdown_text);
+        countdownButton = findViewById(R.id.countdown_toggle);
+        nextExerciseButton = findViewById(R.id.nextExerciseButton);
+        exerciseView = findViewById(R.id.exerciseView);
+
+//        int imageResource = getResources().getIdentifier(
+//                "@drawable/exercise_bodycrunches_blueshirtman",
+//                null,
+//                this.getPackageName()
+//        );
+//        exerciseView.setImageResource(imageResource);
+
+
+        // implements click behavior for button object
+        countdownButton.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view) {
+                startStop(); // button click triggers class method
+            }
+        });
+
+        nextExerciseButton.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view) {
+                String nextExercise = pickRandomExercise(exerciseBank);
+                Log.v("MainActivity", nextExercise);
+                int imageResource = getResources().getIdentifier(
+                        nextExercise,
+                        null,
+                        packageName
+                );
+                exerciseView.setImageResource(imageResource);
+            }
+        });
+
+        updateTimer(); // initial call to form timer at app launch
     }
 
-    private void pauseTimer(){
-        countdownTimer.cancel();
-        isTimerRunning = false;
-        startPauseButton.setText("Start");
-        resetButton.setVisibility(View.VISIBLE);
+    // helper method to eliminate checking bools in onClick event
+    public void startStop(){
+        if(timerRunning){
+            stopTimer();
+        } else {
+            startTimer();
+        }
+    }
+    public void startTimer(){
+        countDownTimer = new CountDownTimer(timeLeftMS, 10) { // ticks every 1000ms
+            @Override
+            public void onTick(long l) {
+                timeLeftMS = l; // update time left
+                updateTimer();
+            }
+
+            @Override
+            public void onFinish() {
+
+            }
+        }.start(); // starts on creation
+        countdownButton.setText("Pause");
+        timerRunning = true;
+    }
+    public void stopTimer(){
+        countDownTimer.cancel();
+        countdownButton.setText("Start");
+        timerRunning = false;
     }
 
-    private void resetTimer(){
-        // Resets countdown to original state
-        millisecondsLeftOnTimer = START_TIME_IN_MILLISECONDS;
-        updateCountdownText();
-        resetButton.setVisibility(View.INVISIBLE);
-        startPauseButton.setVisibility(View.VISIBLE);
+    // update text in the view
+    public void updateTimer(){
+        // building some useful values
+        int minutes = (int) timeLeftMS / 60000; // 60000ms = 1 minute
+        int seconds = (int) (timeLeftMS % 60000) / 1000; // % gives remaining seconds, 1000ms = 1 sec
+
+        String timeLeft;
+        // keeps leading zeros
+        timeLeft = String.format(Locale.getDefault(), "%02d:%02d", minutes, seconds);
+
+        countdownText.setText(timeLeft);
     }
 
-    private void updateCountdownText(){
-        // Converts milliseconds & updates countdownText with new string
-        int minutes = (int) (millisecondsLeftOnTimer / 1000) / 60;
-        int seconds = (int) (millisecondsLeftOnTimer / 1000) % 60;
-
-        String updatedTimeRemaining = String.format(Locale.getDefault(),"%02d:%02d", minutes, seconds);
-        countdownText.setText(updatedTimeRemaining);
+    public String pickRandomExercise(String[][] bank){
+        Random r = new Random();
+        int exercise = new Random().nextInt(bank.length);
+        String[] graphics = bank[exercise];
+        int graphic = new Random().nextInt(graphics.length);
+        return "@drawable/" + graphics[graphic];
     }
-
 }
