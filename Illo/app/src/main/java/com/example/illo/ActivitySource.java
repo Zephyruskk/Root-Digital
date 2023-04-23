@@ -1,13 +1,17 @@
 package com.example.illo;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public abstract class ActivitySource {
 
-    protected Exercise[] exerciseBank;
+    protected Map<String, Exercise> exerciseBank;
     public String name = null;
 
     public abstract Exercise nextExercise();
 
     protected ActivitySource(String name) {
+        this.exerciseBank = new HashMap<>();
         this.name = name;
     }
 

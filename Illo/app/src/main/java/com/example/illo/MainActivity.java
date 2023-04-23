@@ -6,19 +6,27 @@ import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import java.util.Locale;
-import java.util.Random;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity
+                            implements AdapterView.OnItemSelectedListener{
 
     private TextView countdownText;
     private Button countdownButton;
-    private ImageView exerciseView;
+
+
+    private ImageView exerciseGraphicView;
+    private TextView exerciseNameView;
+    private TextView instructionView;
+
     private ImageButton nextExerciseButton;
 
     private CountDownTimer countDownTimer;
@@ -28,39 +36,49 @@ public class MainActivity extends AppCompatActivity {
     private String[][] exerciseBank;
     private String packageName;
 
+    private ExerciseBank exercise_bank;
+    private ActivitySourceBank source_bank;
+
+    private ActivitySource selectedSource;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        try{
+            exercise_bank = ExerciseBank.getInstance(this.getBaseContext());
+        } catch (Exception e){
+            Log.v("EXERCISEBANK", e.toString());
+        }
+        source_bank = ActivitySourceBank.getInstance(exercise_bank);
         packageName = getPackageName();
 
-        exerciseBank = new String[][]{
-                new String[]{"exercise_ballsqueezehandstretch"},
-                new String[]{"exercise_bodycrunches_blueshirtman"},
-                new String[]{
-                        "exercise_breakdancer_blueshirtwoman",
-                        "exercise_breakdancer_whiteshirtwoman"
-                },
-                new String[]{
-                        "exercise_pushups_blueshirtman",
-                        "exercise_pushups_blueshirtwoman"
-                }
-        };
 
         // gives references to objects in the view
         countdownText = findViewById(R.id.countdown_text);
         countdownButton = findViewById(R.id.countdown_toggle);
         nextExerciseButton = findViewById(R.id.nextExerciseButton);
-        exerciseView = findViewById(R.id.exerciseView);
 
-//        int imageResource = getResources().getIdentifier(
-//                "@drawable/exercise_bodycrunches_blueshirtman",
-//                null,
-//                this.getPackageName()
-//        );
-//        exerciseView.setImageResource(imageResource);
+        exerciseGraphicView = findViewById(R.id.exerciseGraphicView);
+        instructionView = findViewById(R.id.instructionView);
+        exerciseNameView = findViewById(R.id.exerciseTitleView);
 
+        Spinner spinno = findViewById(R.id.activitySourceSpinner);
+        ArrayAdapter ad = new ArrayAdapter(
+                this,
+                android.R.layout.simple_spinner_item,
+                source_bank.getExerciseSets().keySet().toArray()
+        );
+        ad.setDropDownViewResource(
+                android.R.layout.simple_spinner_dropdown_item
+        );
+        spinno.setAdapter(ad);
+        spinno.setOnItemSelectedListener(this);
+
+        // default value, for now
+        selectedSource = source_bank.getExerciseSets().get("Freeweight Exercises");
+        Log.v("SELECTED_SOURCE", selectedSource.toString());
 
         // implements click behavior for button object
         countdownButton.setOnClickListener(new View.OnClickListener(){
@@ -73,14 +91,19 @@ public class MainActivity extends AppCompatActivity {
         nextExerciseButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
-                String nextExercise = pickRandomExercise(exerciseBank);
-                Log.v("MainActivity", nextExercise);
+                Exercise nextExercise = selectedSource.nextExercise();
+                Log.v("MainActivity", nextExercise.toString());
+
+                exerciseNameView.setText(nextExercise.getName());
+
                 int imageResource = getResources().getIdentifier(
-                        nextExercise,
+                        "@drawable/"+nextExercise.randomGraphic(),
                         null,
                         packageName
                 );
-                exerciseView.setImageResource(imageResource);
+                exerciseGraphicView.setImageResource(imageResource);
+
+                instructionView.setText(nextExercise.getInstructionSet());
             }
         });
 
@@ -130,11 +153,27 @@ public class MainActivity extends AppCompatActivity {
         countdownText.setText(timeLeft);
     }
 
-    public String pickRandomExercise(String[][] bank){
-        Random r = new Random();
-        int exercise = new Random().nextInt(bank.length);
-        String[] graphics = bank[exercise];
-        int graphic = new Random().nextInt(graphics.length);
-        return "@drawable/" + graphics[graphic];
+    @Override
+    public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+        String selected_item = adapterView.getSelectedItem().toString();
+
+        System.out.println("SELECTED" + selected_item);
+
+        selectedSource = source_bank.getExerciseSets().get(
+                adapterView.getSelectedItem().toString()
+        );
     }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> adapterView) {
+
+    }
+
+//    public String pickRandomExercise(String[][] bank){
+//        Random r = new Random();
+//        int exercise = new Random().nextInt(bank.length);
+//        String[] graphics = bank[exercise];
+//        int graphic = new Random().nextInt(graphics.length);
+//        return "@drawable/" + graphics[graphic];
+//    }
 }
