@@ -2,7 +2,6 @@ package com.example.illo;
 
 import android.util.Log;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -11,17 +10,14 @@ public class ActivitySourceBank {
     private Map<String, ExerciseSet> ES_bank;
     private Map<String, Workout> WO_bank;
 
-    ExerciseSet stretchSet;
-    private String[] stretches = new String[]{
-            "Ball Squeeze Stretch",
+    ExerciseSet muscularStretchSet;
+    private String[] muscularStretches = new String[]{
             "Butterfly Pose",
             "Camel Pose",
             "Chair Spinal Twist",
             "Child Pose",
             "Cobra Pose",
             "Ear To Shoulder Stretch",
-            "Finger Clench Stretch",
-            "Finger Spread Stretch",
             "Kneeling Hip Flexor",
             "Neck Stretch",
             "Overhead Tricep Stretch",
@@ -30,6 +26,13 @@ public class ActivitySourceBank {
             "Side Bend",
             "Spinal Twist",
             "Wall Calf Stretch",
+    };
+
+    ExerciseSet handStretchSet;
+    private String[] handStretches = new String[]{
+            "Ball Squeeze Stretch",
+            "Finger Clench Stretch",
+            "Finger Spread Stretch",
             "Horizontal Wrist Flick",
             "Rolling Ball Wrist Stretch",
             "Vertical Wrist Flexor",
@@ -49,15 +52,17 @@ public class ActivitySourceBank {
 
     private ActivitySourceBank(ExerciseBank ebank){
         ES_bank = new HashMap<>(); WO_bank = new HashMap<>();
-        stretchSet = new ExerciseSet("Stretches");
+        muscularStretchSet = new ExerciseSet("Muscular Stretches");
         freeweightSet = new ExerciseSet("Free Weight Exercises");
+        handStretchSet = new ExerciseSet("Hand Stretches");
+
         initialize(ebank);
     }
 
     private void initialize(ExerciseBank ebank){
-        for(String str : stretches){
+        for(String str : muscularStretches){
             try{
-                stretchSet.addExercise(ebank.getExerciseByName(str));
+                muscularStretchSet.addExercise(ebank.getExerciseByName(str));
             } catch (Exception e){
                 Log.v("ACTIVITY_SOURCE_BANK", e.toString());
             }
@@ -69,7 +74,15 @@ public class ActivitySourceBank {
                 Log.v("ACTIVITY_SOURCE_BANK", e.toString());
             }
         }
-        ES_bank.put("Stretches", stretchSet);
+        for(String str : handStretches){
+            try{
+                handStretchSet.addExercise(ebank.getExerciseByName(str));
+            } catch (Exception e){
+                Log.v("ACTIVITY_SOURCE_BANK", e.toString());
+            }
+        }
+        ES_bank.put("Hand Stretches", handStretchSet);
+        ES_bank.put("Muscular Stretches", muscularStretchSet);
         ES_bank.put("Freeweight Exercises", freeweightSet);
 
     }
