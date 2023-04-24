@@ -32,7 +32,9 @@ public class MainActivity extends AppCompatActivity
     private boolean nextScreenIsExercise;
 
     private CountDownTimer countDownTimer;
-    private long timeLeftMS = 300000; // 15 min
+    private long productivityInterval = 1200000; // 20 min
+    private long activityInterval = 300000; // 5 min
+    private long timeLeftMS; // 15 min
     private boolean timerRunning;
 
     private String[][] exerciseBank;
@@ -42,6 +44,8 @@ public class MainActivity extends AppCompatActivity
     private ActivitySourceBank source_bank;
 
     private ActivitySource selectedSource;
+    private String productivityPeriod;
+    private int logoResource;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,14 +61,15 @@ public class MainActivity extends AppCompatActivity
         packageName = getPackageName();
 
         nextScreenIsExercise = true;
-        String productivityPeriod = "Productivity Period";
+        productivityPeriod = "Productivity Period";
+
 
         // gives references to objects in the view
         countdownText = findViewById(R.id.countdown_text);
         countdownButton = findViewById(R.id.countdown_toggle);
         nextExerciseButton = findViewById(R.id.nextExerciseButton);
 
-        int logoResource = getResources().getIdentifier(
+        logoResource = getResources().getIdentifier(
                 "@drawable/logo",
                 null,
                 packageName
@@ -91,6 +96,7 @@ public class MainActivity extends AppCompatActivity
         selectedSource = source_bank.getExerciseSets().get("Freeweight Exercises");
         Log.v("SELECTED_SOURCE", selectedSource.toString());
 
+        timeLeftMS = productivityInterval; // initial setup
         // implements click behavior for button object
         countdownButton.setOnClickListener(new View.OnClickListener(){
             @Override
@@ -102,32 +108,14 @@ public class MainActivity extends AppCompatActivity
         nextExerciseButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
-                if(nextScreenIsExercise) {
-                    Exercise nextExercise = selectedSource.nextExercise();
-                    Log.v("MainActivity", nextExercise.toString());
-
-                    exerciseNameView.setText(nextExercise.getName());
-
-                    int imageResource = getResources().getIdentifier(
-                            "@drawable/" + nextExercise.randomGraphic(),
-                            null,
-                            packageName
-                    );
-                    exerciseGraphicView.setImageResource(imageResource);
-                    instructionView.setText(nextExercise.getInstructionSet());
-
-                    nextScreenIsExercise = false;
-                }else{
-                    exerciseNameView.setText(productivityPeriod);
-                    exerciseGraphicView.setImageResource(logoResource);
-                    instructionView.setText("");
-                    nextScreenIsExercise = true;
-                }
+                nextScreenIsExercise = nextScreen(nextScreenIsExercise);
             }
         });
 
         updateTimer(); // initial call to form timer at app launch
     }
+
+
 
     // helper method to eliminate checking bools in onClick event
     public void startStop(){
@@ -147,7 +135,7 @@ public class MainActivity extends AppCompatActivity
 
             @Override
             public void onFinish() {
-
+                nextScreenIsExercise = nextScreen(nextScreenIsExercise);
             }
         }.start(); // starts on creation
         countdownButton.setText("Pause");
@@ -188,6 +176,36 @@ public class MainActivity extends AppCompatActivity
 
     }
 
+    public boolean nextScreen(boolean exerciseOnNextScreen){
+        if(exerciseOnNextScreen) {
+            Exercise nextExercise = selectedSource.nextExercise();
+            Log.v("MainActivity", nextExercise.toString());
+
+            exerciseNameView.setText(nextExercise.getName());
+
+            int imageResource = getResources().getIdentifier(
+                    "@drawable/" + nextExercise.randomGraphic(),
+                    null,
+                    packageName
+            );
+            exerciseGraphicView.setImageResource(imageResource);
+            instructionView.setText(nextExercise.getInstructionSet());
+            timeLeftMS = activityInterval;
+            stopTimer();
+            updateTimer();
+            startTimer();
+
+        }else{
+            exerciseNameView.setText(productivityPeriod);
+            exerciseGraphicView.setImageResource(logoResource);
+            instructionView.setText("");
+            timeLeftMS = productivityInterval;
+            stopTimer();
+            updateTimer();
+            startTimer();
+        }
+        return !exerciseOnNextScreen;
+    }
 //    public String pickRandomExercise(String[][] bank){
 //        Random r = new Random();
 //        int exercise = new Random().nextInt(bank.length);
