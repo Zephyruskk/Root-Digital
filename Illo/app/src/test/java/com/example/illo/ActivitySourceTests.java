@@ -8,6 +8,7 @@ import static org.junit.Assert.*;
 
 public class ActivitySourceTests {
     static ActivitySource testAS;
+    static int TEST_SIZE = 20; // make at least 20
 
     // setup TestAS and ensure constructor is correct
     @BeforeClass
@@ -22,20 +23,20 @@ public class ActivitySourceTests {
         assertEquals("Test", testAS.name);
         assertEquals(0, testAS.size());
 
-        for(int i = 0; i < 20; i++){
+        for(int i = 0; i < TEST_SIZE; i++){
             testAS.addExercise(
                     new Exercise("Exercise" + i, null, null)
             );
             // no tests for instructions or graphics as of 24 April
         }
 
-        assertEquals(20, testAS.size());
+        assertEquals(TEST_SIZE, testAS.size());
     }
 
     @Test
     public void testAddExercise(){
-        testAS.addExercise(new Exercise("Exercise20", null, null));
-        assertTrue("Add Exercise 20", testAS.exerciseBank.containsKey("Exercise20"));
+        testAS.addExercise(new Exercise("Exercise"+TEST_SIZE, null, null));
+        assertTrue("Add Exercise "+TEST_SIZE, testAS.exerciseBank.containsKey("Exercise"+TEST_SIZE));
     }
 
     @Test

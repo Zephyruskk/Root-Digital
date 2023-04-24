@@ -20,12 +20,19 @@ public class Workout extends ActivitySource {
         return nextExercise;
     }
 
-    public void incrementAtIndex(){
-        atIndex++;
+    public void incrementAtIndex(int i){
+        if(i < 1){
+            return;
+        }
+        atIndex += i;
         if(atIndex >= exerciseBank.size()){
-            atIndex = 0;
+            atIndex = atIndex%exerciseBank.size();
             incrementCompletion();
         }
+    }
+
+    public void incrementAtIndex(){
+        incrementAtIndex(1);
     }
 
     public void setAtIndex(int i){
@@ -38,5 +45,9 @@ public class Workout extends ActivitySource {
 
     public int getCompletions(){
         return completions;
+    }
+
+    public int getAtIndex(){
+        return atIndex;
     }
 }
