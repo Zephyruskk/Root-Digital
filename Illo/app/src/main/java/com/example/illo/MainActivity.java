@@ -2,6 +2,9 @@ package com.example.illo;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.media.Ringtone;
+import android.media.RingtoneManager;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.util.Log;
@@ -117,7 +120,6 @@ public class MainActivity extends AppCompatActivity
     }
 
 
-
     // helper method to eliminate checking bools in onClick event
     public void startStop(){
         if(timerRunning){
@@ -137,6 +139,16 @@ public class MainActivity extends AppCompatActivity
             @Override
             public void onFinish() {
                 nextScreenIsExercise = nextScreen(nextScreenIsExercise);
+
+                // setup sount alert for timer end
+                Uri ringtoneUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_ALARM);
+                Ringtone ringtoneSound = RingtoneManager.getRingtone(getApplicationContext(), ringtoneUri);
+                // making sure the alarm is not already running
+                if (ringtoneSound != null) {
+                    ringtoneSound.play();
+                    android.os.SystemClock.sleep(1000); // alarm time in ms
+                    ringtoneSound.stop();
+                }
             }
         }.start(); // starts on creation
         startStopButton.setText("Pause");
