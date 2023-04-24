@@ -28,7 +28,15 @@ public class Workout extends ActivitySource {
         }
     }
 
+    public void setAtIndex(int i){
+        atIndex = i;
+    }
+
     private void incrementCompletion(){
         completions++;
+    }
+
+    public int getCompletions(){
+        return completions;
     }
 }

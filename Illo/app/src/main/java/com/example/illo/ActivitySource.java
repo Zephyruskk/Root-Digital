@@ -64,6 +64,10 @@ public abstract class ActivitySource {
         }
     }
 
+    public int size(){
+        return exerciseBank.size();
+    }
+
     public String toString(){
         String outString = "-------------"+name+"-------------\n";
         for(String s : exerciseBank.keySet()){
