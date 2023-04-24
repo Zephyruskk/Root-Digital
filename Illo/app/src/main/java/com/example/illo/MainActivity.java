@@ -38,7 +38,7 @@ public class MainActivity extends AppCompatActivity
     // state variables
     private boolean nextScreenIsExercise = true; // starts in productivity period
     private long timeLeftMS = productivityInterval;
-    private boolean timerRunning;
+    private boolean timerRunning = false;
     private ActivitySource selectedSource;
 
 
@@ -112,6 +112,8 @@ public class MainActivity extends AppCompatActivity
         });
 
         updateTimer(); // initial call to form timer at app launch
+        startTimer();
+        stopTimer();
     }
 
 

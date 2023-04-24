@@ -15,8 +15,8 @@ public abstract class ActivitySource {
         this.name = name;
     }
 
-    public void addExercise(){
-
+    public void addExercise(Exercise exr){
+        exerciseBank.put(exr.getName(), exr);
     }
 
     public Exercise[] removeExercise(){

@@ -20,9 +20,8 @@ public class ExerciseSet extends ActivitySource{
         return exerciseList.get(randIndex);
     }
 
-    public void addExercise(Exercise exr){
-        exerciseBank.put(exr.getName(), exr);
-    }
+
+
 
     @Override
     public String toString(){
