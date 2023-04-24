@@ -5,7 +5,7 @@ import java.util.List;
 
 public class Workout extends ActivitySource {
     private int completions = 0;
-    private int atIndex;
+    private int atIndex; // state variable -- which exercise the user is currently at
 
     public Workout(String name) {
         super(name);
@@ -15,9 +15,9 @@ public class Workout extends ActivitySource {
     // get the next exercise in the workout
     public Exercise nextExercise() {
         List<Exercise> exerciseList = new ArrayList<Exercise>(exerciseBank.values());
-        Exercise returnExercise = exerciseList.get(atIndex);
+        Exercise nextExercise = exerciseList.get(atIndex);
         incrementAtIndex();
-        return returnExercise;
+        return nextExercise;
     }
 
     public void incrementAtIndex(){
