@@ -1,6 +1,7 @@
 package com.example.illo;
 
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 public abstract class ActivitySource {
@@ -11,7 +12,7 @@ public abstract class ActivitySource {
     public abstract Exercise nextExercise();
 
     protected ActivitySource(String name) {
-        this.exerciseBank = new HashMap<>();
+        this.exerciseBank = new LinkedHashMap<>();
         this.name = name;
     }
 
@@ -19,13 +20,33 @@ public abstract class ActivitySource {
         exerciseBank.put(exr.getName(), exr);
     }
 
-    public Exercise[] removeExercise(){
-
-        return null;
+    public void removeExercise(Exercise exr){
+        exerciseBank.remove(exr.getName());
     }
 
-    public void reorderExercise(){
+    public void removeExercise(String k){
+        exerciseBank.remove(k);
+    }
 
+
+    public void reorderExercise(String k, int pos){
+        if(!exerciseBank.containsKey(k)){
+            return;
+        }
+        Exercise temp = exerciseBank.get(k);
+        exerciseBank.remove(k);
+        Map<String, Exercise> newBank = new LinkedHashMap<>();
+        if(pos >= exerciseBank.size()){
+            exerciseBank.put(k, temp);
+        }else {
+            if(pos < 0) pos = 0;
+            int i = 0;
+            for (String key : exerciseBank.keySet()) {
+                if(pos == i++) newBank.put(k,temp);
+                newBank.put(key, exerciseBank.get(key));
+            }
+            exerciseBank = newBank;
+        }
     }
 
     public void rename(String name){
@@ -41,6 +62,14 @@ public abstract class ActivitySource {
         } else {
             throw new IllegalArgumentException("Invalid activity source name");
         }
+    }
+
+    public String toString(){
+        String outString = "-------------"+name+"-------------\n";
+        for(String s : exerciseBank.keySet()){
+            outString += s + "\n";
+        }
+        return outString;
     }
 
 }

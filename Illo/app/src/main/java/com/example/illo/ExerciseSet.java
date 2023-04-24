@@ -21,8 +21,6 @@ public class ExerciseSet extends ActivitySource{
     }
 
 
-
-
     @Override
     public String toString(){
         String outString = "";
