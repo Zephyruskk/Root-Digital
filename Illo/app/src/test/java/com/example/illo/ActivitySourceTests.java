@@ -57,9 +57,7 @@ public class ActivitySourceTests {
 
         Exercise popped = al.remove(10);
         al.add(0, popped);
-
         testAS.reorderExercise("Exercise10", 0);
-
         // check order
         int al_index = 0;
         for(String k : testAS.exerciseBank.keySet()){
@@ -81,7 +79,6 @@ public class ActivitySourceTests {
         popped = al.remove(15);
         al.add(popped);
         testAS.reorderExercise("Exercise15", TEST_SIZE+20);
-
         al_index = 0;
         for(String k : testAS.exerciseBank.keySet()){
             assertEquals(al.get(al_index), testAS.exerciseBank.get(k));
@@ -92,7 +89,6 @@ public class ActivitySourceTests {
         popped = al.remove(al.size()-1);
         al.add(15, popped);
         testAS.reorderExercise("Exercise15", 15);
-
         al_index = 0;
         for(String k : testAS.exerciseBank.keySet()){
             assertEquals(al.get(al_index), testAS.exerciseBank.get(k));
