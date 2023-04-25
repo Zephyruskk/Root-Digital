@@ -17,9 +17,11 @@ public class Exercise {
     public String toString(){
         String outString = "----------------------------------------------------------\n";
         outString += (name + "\n");
-        outString += (instructionSet + "\n");
-        for(String s : graphicPaths ){
-            outString += (s + "\n");
+        if(instructionSet != null) outString += (instructionSet + "\n");
+        if(graphicPaths!=null) {
+            for (String s : graphicPaths) {
+                outString += (s + "\n");
+            }
         }
         outString += "----------------------------------------------------------\n";
 

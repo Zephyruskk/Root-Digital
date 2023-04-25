@@ -17,7 +17,13 @@ public abstract class ActivitySource {
     }
 
     public void addExercise(Exercise exr){
-        exerciseBank.put(exr.getName(), exr);
+        String name = exr.getName();
+        int i = 1;
+        while(exerciseBank.containsKey(name)){
+            name = exr.getName() + "_" + i;
+            i++;
+        }
+        exerciseBank.put(name, exr);
     }
 
     public void removeExercise(Exercise exr){

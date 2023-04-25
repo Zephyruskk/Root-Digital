@@ -58,8 +58,9 @@ public class WorkoutTests {
         }
         assertEquals((current+10)%s, testWO.getAtIndex());
 
-        testWO.incrementAtIndex(333);
-        assertEquals((current+10+333)%s, testWO.getAtIndex());
+        int big_change = (int) Math.floor(TEST_SIZE*111.25);
+        testWO.incrementAtIndex(big_change);
+        assertEquals((current+10+big_change)%s, testWO.getAtIndex());
 
         testWO.setAtIndex(0);
         testWO.incrementAtIndex(s);
@@ -70,12 +71,21 @@ public class WorkoutTests {
     @Test
     public void testNextExercise(){
         int s = testWO.size();
+
+        // loop throgh entire Workout
         for(int i = 0; i < s; i++){
             assertEquals("Exercise"+i, testWO.nextExercise().getName());
         }
-        // test wrap
+
+        // loop many times (check for off by ones etc)
+        for(int i = 0; i < s*20; i++){
+            assertEquals("Exercise"+i%20, testWO.nextExercise().getName());
+        }
+
+        // check on single case
         assertEquals("Exercise0", testWO.nextExercise().getName());
 
+        // reset
         testWO.setAtIndex(0);
     }
 
