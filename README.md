@@ -7,11 +7,11 @@ Illo is developed with Java via the Android API version 29 for Android version 1
   
 Root-Digital is a company by Cole Adams, Evan Mutchler, Johnny Sylvain, Riley Mills, and Zachary Scott.
 
-The app currently has 3 windows that have a basic mockup of the ui.
+The app currently has 1 window that has selectable workout sets of different varieties. When selected a timer is available with intervals of 20 minutes of productivity and 5 minutes of an activity of the chosen set, when a set ends, an alarm will sound alerting the user. The timer has the functionality to pause and resume, as well as skip productivity/exercise items. 
 
 FEATURES IN DEVELOPMENT:
-++ TIMER 
-++ USER INPUT NAME
-++ UI COLOR SELECTION
+++ Multiple Windows
+++ UI Colors
+++ Set Creation
 
 The implementation of these features are currently in the early stages of development.
